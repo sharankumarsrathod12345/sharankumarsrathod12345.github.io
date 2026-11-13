@@ -35,3 +35,7 @@ The case studies use practice datasets, including course-guided projects. Report
 To preview changes, run `python -m http.server 8000` from the repository root and open `http://localhost:8000`. Check the project filter, open the edited case study, and review its layout at a narrow screen width.
 
 GitHub Pages publishes from the root of `main`. After committing a change, check the [Pages deployment run](https://github.com/sharankumarsrathod12345/sharankumarsrathod12345.github.io/actions) and then open the live page.
+
+## HR Dashboard
+
+The HR case study is at `/projects/hr-dashboard/`, with original screenshots in `assets/hr-summary.png` and `assets/hr-employee-details.png`. It appears under All projects and Tableau, plus a homepage announcement. The four featured projects remain unchanged.
