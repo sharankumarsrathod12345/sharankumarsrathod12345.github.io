@@ -1,0 +1,87 @@
+{
+  "pages": [
+    {
+      "path": "index.html",
+      "h1": 1,
+      "images": 10,
+      "unique_ids": 24
+    },
+    {
+      "path": "projects/advanced-sql-analytics/index.html",
+      "h1": 1,
+      "images": 1,
+      "unique_ids": 1
+    },
+    {
+      "path": "projects/customer-segmentation/index.html",
+      "h1": 1,
+      "images": 5,
+      "unique_ids": 8
+    },
+    {
+      "path": "projects/data-jobs/index.html",
+      "h1": 1,
+      "images": 1,
+      "unique_ids": 1
+    },
+    {
+      "path": "projects/ecommerce/index.html",
+      "h1": 1,
+      "images": 1,
+      "unique_ids": 1
+    },
+    {
+      "path": "projects/hr-dashboard/index.html",
+      "h1": 1,
+      "images": 2,
+      "unique_ids": 7
+    },
+    {
+      "path": "projects/movie-analysis/index.html",
+      "h1": 1,
+      "images": 5,
+      "unique_ids": 7
+    },
+    {
+      "path": "projects/sales-customer/index.html",
+      "h1": 1,
+      "images": 3,
+      "unique_ids": 7
+    },
+    {
+      "path": "projects/sales-eda/index.html",
+      "h1": 1,
+      "images": 1,
+      "unique_ids": 1
+    },
+    {
+      "path": "projects/sql-warehouse/index.html",
+      "h1": 1,
+      "images": 2,
+      "unique_ids": 7
+    },
+    {
+      "path": "evidence/index.html",
+      "h1": 1,
+      "images": 0,
+      "unique_ids": 10
+    }
+  ],
+  "contrast": {
+    "light body": 13.41,
+    "light muted": 6.19,
+    "light link": 6.83,
+    "dark body": 15.86,
+    "dark muted": 8.47,
+    "dark link": 9.58
+  },
+  "asset_bytes": {
+    "assets/experience.js": 9119,
+    "assets/experience.css": 9189,
+    "assets/site.css": 18210,
+    "assets/sales-dashboard-hero.webp": 56970
+  },
+  "limits": "Structural checks and selected color pairs only; not a complete WCAG conformance or Lighthouse performance score. Browser interaction and layout checks are recorded separately.",
+  "errors": [],
+  "status": "passed"
+}

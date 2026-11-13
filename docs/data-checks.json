@@ -1,0 +1,45 @@
+{
+  "review_date": "2026-11-13",
+  "method": "Python CSV reconciliation, not native SQL Server or Tableau execution",
+  "hr": {
+    "rows": 8950,
+    "unique_employee_ids": 8950,
+    "active": 7984,
+    "terminated": 966,
+    "departments": {
+      "Customer Service": 1673,
+      "IT": 1382,
+      "Operations": 2718,
+      "Finance": 452,
+      "Marketing": 718,
+      "HR": 172,
+      "Sales": 1835
+    },
+    "sha256": "29f3946ed223fb1db94d282938df35b6ebcefa7fc101751d5f96cb2367f3f7ca"
+  },
+  "gold": {
+    "sales_rows": 60398,
+    "distinct_orders": 27659,
+    "customer_rows": 18484,
+    "product_rows": 295,
+    "sales_amount": "29356250",
+    "currency": "unspecified",
+    "units": 60423,
+    "bikes_sales_share_pct": 96.46,
+    "accessories_units_share_pct": 59.77,
+    "missing_order_date_rows": 0,
+    "missing_date_sales": "0",
+    "unique_dimension_keys": true,
+    "all_sales_match_one_customer_and_product": true,
+    "join_preserves_rows_and_sales": true,
+    "sha256": {
+      "fact_sales.csv": "2aa7ea1f5ad9b313c6312e1358fdd720e29387603557c840b69c747c25ccb496",
+      "dim_customers.csv": "0632d30c98694f60df55a31e6a5f31b3a02a6c515666031c4e4773aca9397bac",
+      "dim_products.csv": "9a727fb180a9cfbc15476b03bcf1a6bb6417263d613b7bddca6f3d3a114c8c4c"
+    }
+  },
+  "sources": {
+    "hr_repository_commit": "30765f0d0e818cb6da96554a082f99d99dcd4cfe",
+    "gold_repository_commit": "ae9514e4602a4a5eef410bae1ce5376b9b321746"
+  }
+}

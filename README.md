@@ -47,3 +47,9 @@ The shared `assets/experience.css` and `assets/experience.js` enhance the homepa
 Project cards and business content remain in `index.html`. Keep each card's `data-category`, `data-featured`, and image alt text accurate. Add actual dashboard/chart preview filenames to the `previews` mapping in `experience.js` when adding projects; projects without a mapped preview use their cover. Images are static previews, not embedded interactive BI workbooks.
 
 Validation: desktop and a 390px phone-width frame were inspected in the browser. Search, empty results, Tableau/Excel filtering, existing project dialogs, two-image galleries, zoom, Escape closing, theme persistence across pages, local asset links, and JavaScript syntax were checked. Original cover image files were unchanged. Theme preference is saved locally in the visitor's browser; no analytics or external animation dependencies were added.
+
+## Evidence and quality maintenance
+
+All nine projects have dedicated pages. `/evidence/` links source documentation and distinguishes verified snapshot findings from outstanding checks. See `docs/portfolio-audit.md`, `docs/site-checks.json`, and `docs/data-checks.json` for the scope and evidence of the latest pass.
+
+Run `python scripts/audit_site.py` and `node --check assets/experience.js` before publishing changes. The GitHub Actions quality workflow runs the same checks. Responsive cover variants use `srcset`; keep the originals when replacing a display asset. Native workbook/SQL validation and original dataset attribution remain separate from website checks.
