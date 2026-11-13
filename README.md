@@ -39,3 +39,11 @@ GitHub Pages publishes from the root of `main`. After committing a change, check
 ## HR Dashboard
 
 The HR case study is at `/projects/hr-dashboard/`, with original screenshots in `assets/hr-summary.png` and `assets/hr-employee-details.png`. It appears under All projects and Tableau, plus a homepage announcement. The four featured projects remain unchanged.
+
+## Interactive experience
+
+The shared `assets/experience.css` and `assets/experience.js` enhance the homepage and all seven case studies. They provide a remembered light/dark theme, sticky navigation, reading progress, subtle reduced-motion-aware transitions, searchable project filters, and an image viewer with previous/next, zoom, original-image links, Escape handling, and focus restoration.
+
+Project cards and business content remain in `index.html`. Keep each card's `data-category`, `data-featured`, and image alt text accurate. Add actual dashboard/chart preview filenames to the `previews` mapping in `experience.js` when adding projects; projects without a mapped preview use their cover. Images are static previews, not embedded interactive BI workbooks.
+
+Validation: desktop and a 390px phone-width frame were inspected in the browser. Search, empty results, Tableau/Excel filtering, existing project dialogs, two-image galleries, zoom, Escape closing, theme persistence across pages, local asset links, and JavaScript syntax were checked. Original cover image files were unchanged. Theme preference is saved locally in the visitor's browser; no analytics or external animation dependencies were added.
