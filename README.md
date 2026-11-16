@@ -53,3 +53,12 @@ Validation: desktop and a 390px phone-width frame were inspected in the browser.
 All nine projects have dedicated pages. `/evidence/` links source documentation and distinguishes verified snapshot findings from outstanding checks. See `docs/portfolio-audit.md`, `docs/site-checks.json`, and `docs/data-checks.json` for the scope and evidence of the latest pass.
 
 Run `python scripts/audit_site.py` and `node --check assets/experience.js` before publishing changes. The GitHub Actions quality workflow runs the same checks. Responsive cover variants use `srcset`; keep the originals when replacing a display asset. Native workbook/SQL validation and original dataset attribution remain separate from website checks.
+
+## Client-facing improvements — 16 November 2026
+
+- Use the **Business need** selector to find sales/operations, preparation, customer/campaign or HR work. It combines with search; clicking a tool filter clears the business-need selection.
+- Edit case-study summary text in [`content/projects.json`](content/projects.json), then run `python scripts/sync_projects.py`. Commit the JSON and generated case-study HTML together. Pages remain readable without JavaScript. This file owns the summary blocks only; homepage cards and long-form content still live in HTML.
+- Before publishing: `python scripts/sync_projects.py --check`, `python scripts/audit_site.py`, and `node --check assets/experience.js`.
+- The quality workflow checks local links/fragments, responsive `srcset` assets, dynamic gallery images, CSS assets, JavaScript syntax, document structure and selected file-size/color budgets. Download its `portfolio-quality-results` artifact to inspect findings. These checks report issues; the existing branch-based Pages deployment is not gated by them.
+- To check external destinations, run `python scripts/check_external_links.py`, or use Actions → Portfolio quality checks → Run workflow → enable **check_external**. Confirmed 404/410 responses fail; blocked, timed-out or rate-limited requests are marked for manual review. External reachability is separate from content accuracy.
+- Browser QA used 360/390/768px iframe widths, plus desktop. This is responsive-layout testing, not physical-device testing or a Lighthouse/Core Web Vitals score. No new dashboard video was recorded; the existing Excel interaction walkthrough remains linked.

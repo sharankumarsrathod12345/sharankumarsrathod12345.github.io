@@ -63,3 +63,21 @@ body[data-motion=off] .reveal-ready{opacity:1;transform:none}
 @media print{.hero:after,.hero:before,.motion-toggle,.showcase-controls,.studio-caption{display:none}.hero h1 em{background:none;color:inherit}}
 
 .motion-toggle{display:block;width:fit-content;margin-top:18px}
+
+/* Client browsing and compact-screen audit fixes. */
+.project-search{flex-wrap:wrap}
+.project-search select{min-height:46px;max-width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:13px Arial,sans-serif}
+.hero .tiny{display:block}
+.project-links a,.gallery-link{display:inline-flex;align-items:center;min-height:44px}
+.lightbox-controls{flex-wrap:wrap;min-width:0}
+.lightbox-toolbar h2{overflow-wrap:anywhere}
+@media(max-width:760px){
+ .project-search label{margin-top:5px}.project-search select{width:100%}
+ .hero-preview .charthead{flex-wrap:wrap}.hero-preview img{height:auto;aspect-ratio:16/10}
+ .hero-preview .preview-bottom{font-size:12px}
+ .brief input,.brief textarea,.brief select,.project-search input,.project-search select{font-size:16px}
+ .case-links a{overflow-wrap:anywhere}.table-wrap{max-width:100%}
+ .lightbox-controls{gap:5px}.lightbox-toolbar{max-height:30dvh;overflow:auto}
+ .lightbox-stage{height:50dvh}.lightbox-caption{font-size:11px}
+}
+@media(max-width:380px){.hero h1{font-size:40px}.hero .actions{gap:12px}.preview-bottom{display:block}.preview-bottom span{display:block;margin-top:6px}}

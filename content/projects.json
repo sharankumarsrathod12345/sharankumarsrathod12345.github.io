@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "sales-customer",
+    "title": "Sales & Customer Performance",
+    "decision": "Review sales and profit together.",
+    "takeaway": "Two connected dashboards let a reviewer investigate a product, period or customer segment.",
+    "next_step": "Investigate high-sales, low-profit segments, then reconcile the underlying transactions."
+  },
+  {
+    "slug": "hr-dashboard",
+    "title": "Human Resources Dashboard",
+    "decision": "Understand workforce composition.",
+    "takeaway": "8,950 synthetic records reconcile to 7,984 active and 966 terminated employees.",
+    "next_step": "Compare departments using a consistent as-of date; historical termination share is not a period attrition rate."
+  },
+  {
+    "slug": "advanced-sql-analytics",
+    "title": "Advanced SQL Analytics",
+    "decision": "Distinguish sales value from unit volume.",
+    "takeaway": "Bikes lead sales value while accessories lead units in the supplied snapshot.",
+    "next_step": "Check product costs and stock availability before changing pricing or assortment."
+  },
+  {
+    "slug": "sales-eda",
+    "title": "Sales EDA with SQL",
+    "decision": "Establish reliable sales comparisons.",
+    "takeaway": "60,398 sales rows represent 27,659 orders; row counts and order counts answer different questions.",
+    "next_step": "Use distinct orders for order KPIs and investigate missing dates before comparing periods."
+  },
+  {
+    "slug": "sql-warehouse",
+    "title": "A SQL foundation for sales reporting",
+    "decision": "Create consistent reporting across sources.",
+    "takeaway": "Six CRM/ERP files are organized into Bronze, Silver and Gold layers with inspectable transformations.",
+    "next_step": "Validate joins and metric definitions in SQL Server before connecting a business dashboard."
+  },
+  {
+    "slug": "customer-segmentation",
+    "title": "Customer segments worth testing",
+    "decision": "Choose a segment for a campaign test.",
+    "takeaway": "Higher-spend, recent profiles show 30.30% observed response versus 15.39% overall in the simulated sample.",
+    "next_step": "Run a controlled test and measure incremental revenue and campaign costs before reallocating budget."
+  },
+  {
+    "slug": "movie-analysis",
+    "title": "Movie patterns, with the right context",
+    "decision": "Compare movie groups on a defensible basis.",
+    "takeaway": "Multi-genre films overlap across groups; financial comparisons use a different subset from the original plots.",
+    "next_step": "Report sample sizes and positive-budget/revenue coverage before comparing genres; revenue is not profit."
+  },
+  {
+    "slug": "ecommerce",
+    "title": "E-commerce Sales & Logistics",
+    "decision": "Identify sales and delivery patterns to investigate.",
+    "takeaway": "The editable Excel dashboard and recorded walkthrough demonstrate channel and delivery exploration.",
+    "next_step": "Agree delivery targets and reconcile workbook measures before prioritizing an operational change."
+  },
+  {
+    "slug": "data-jobs",
+    "title": "Global Data Jobs Market",
+    "decision": "Understand historical role and skill patterns.",
+    "takeaway": "Two workbooks explore salaries and skills in 2023 postings; this is not a current market tracker.",
+    "next_step": "Refresh the source and compare equivalent roles and locations before a hiring or career decision."
+  }
+]

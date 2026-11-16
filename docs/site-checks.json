@@ -1,6 +1,12 @@
 {
   "pages": [
     {
+      "path": "evidence/index.html",
+      "h1": 1,
+      "images": 0,
+      "unique_ids": 10
+    },
+    {
       "path": "index.html",
       "h1": 1,
       "images": 10,
@@ -59,28 +65,24 @@
       "h1": 1,
       "images": 2,
       "unique_ids": 7
-    },
-    {
-      "path": "evidence/index.html",
-      "h1": 1,
-      "images": 0,
-      "unique_ids": 10
     }
   ],
   "contrast": {
     "light body": 13.41,
     "light muted": 6.19,
     "light link": 6.83,
-    "dark body": 15.86,
-    "dark muted": 8.47,
-    "dark link": 9.58
+    "dark body": 16.33,
+    "dark muted": 8.7,
+    "dark link": 10.43
   },
   "asset_bytes": {
-    "assets/experience.js": 9119,
-    "assets/experience.css": 9189,
+    "assets/experience.js": 13553,
+    "assets/experience.css": 15595,
     "assets/site.css": 18210,
     "assets/sales-dashboard-hero.webp": 56970
   },
+  "checked_dynamic_assets": true,
+  "checked_srcset": true,
   "limits": "Structural checks and selected color pairs only; not a complete WCAG conformance or Lighthouse performance score. Browser interaction and layout checks are recorded separately.",
   "errors": [],
   "status": "passed"

@@ -1,10 +1,15 @@
 name: Portfolio quality checks
 on:
   push:
-    paths: ['**.html', 'assets/**', 'scripts/**', '.github/workflows/site-quality.yml']
+    paths: ['**.html', 'assets/**', 'content/**', 'scripts/**', '.github/workflows/site-quality.yml']
   pull_request:
-    paths: ['**.html', 'assets/**', 'scripts/**', '.github/workflows/site-quality.yml']
+    paths: ['**.html', 'assets/**', 'content/**', 'scripts/**', '.github/workflows/site-quality.yml']
   workflow_dispatch:
+    inputs:
+      check_external:
+        description: 'Also check external destinations (blocked sites require manual review)'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -19,4 +24,12 @@ jobs:
         with:
           python-version: '3.12'
       - run: node --check assets/experience.js
-      - run: python scripts/audit_site.py
+      - run: python scripts/sync_projects.py --check
+      - run: python scripts/audit_site.py > site-check-results.json
+      - if: github.event_name == 'workflow_dispatch' && inputs.check_external
+        run: python scripts/check_external_links.py > external-link-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portfolio-quality-results
+          path: '*-results.json'
