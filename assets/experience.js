@@ -6,13 +6,13 @@ if(nav){const toggle=document.createElement('button');toggle.className='theme-to
 const sync=()=>{const dark=root.dataset.theme==='dark';toggle.textContent=dark?'☀':'☾';toggle.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');toggle.setAttribute('aria-pressed',String(dark));};
 toggle.onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('portfolio-theme',root.dataset.theme)}catch{}sync()};sync();nav.append(toggle);}
 const progress=document.createElement('div');progress.className='reading-progress';progress.setAttribute('aria-hidden','true');document.body.append(progress);
-const top=document.createElement('button');top.type='button';top.className='back-top';top.textContent='↑';top.setAttribute('aria-label','Back to top');top.hidden=true;top.onclick=()=>window.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'});document.body.append(top);
+const top=document.createElement('button');top.type='button';top.className='back-top';top.textContent='↑';top.setAttribute('aria-label','Back to top');top.hidden=true;top.onclick=()=>window.scrollTo({top:0,behavior:reduced.matches||document.body.dataset.motion==='off'?'instant':'smooth'});document.body.append(top);
 let queued=false;function scrollState(){const total=root.scrollHeight-innerHeight;progress.style.transform=`scaleX(${total>0?Math.min(1,scrollY/total):0})`;document.body.classList.toggle('scrolled',scrollY>20);top.hidden=scrollY<650;queued=false}addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(scrollState)}},{passive:true});addEventListener('resize',scrollState);scrollState();
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:.06});document.querySelectorAll('.sectionhead,.service,.workflow article,.case-body section').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('reveal-ready');observer.observe(el)}});
 const links=[...document.querySelectorAll('nav a[href^="#"],.case-aside a[href^="#"]')];const activeObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){links.forEach(a=>{if(a.hash==='#'+e.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-15% 0px -55% 0px'});document.querySelectorAll('section[id]').forEach(s=>activeObserver.observe(s));}
 const cards=[...document.querySelectorAll('.project')], filters=[...document.querySelectorAll('[data-filter]')];
 if(cards.length){const bar=document.createElement('div');bar.className='project-search';bar.innerHTML='<label for="project-search">Find a project</label><input id="project-search" type="search" placeholder="Search tools, topics, or projects…" autocomplete="off">';document.querySelector('.filters').before(bar);const search=bar.querySelector('input');const empty=document.createElement('p');empty.className='empty-projects';empty.hidden=true;empty.textContent='No matching projects. Try another search or select All projects.';document.querySelector('.projects').after(empty);let selected='featured';
-function filter(){let n=0;const query=search.value.trim().toLowerCase();filters.forEach(b=>{b.classList.toggle('active',b.dataset.filter===selected);b.setAttribute('aria-pressed',String(b.dataset.filter===selected))});cards.forEach(card=>{const matches=(selected==='all'||(selected==='featured'?card.dataset.featured==='true':card.dataset.category===selected))&&card.textContent.toLowerCase().includes(query);card.hidden=!matches;if(matches){if(!reduced.matches&&card.animate)card.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});n++}});document.getElementById('project-count').textContent=`Showing ${n} of ${cards.length} projects${selected==='featured'?' · Featured selection':''}`;empty.hidden=n>0;}
+function filter(){let n=0;const query=search.value.trim().toLowerCase();filters.forEach(b=>{b.classList.toggle('active',b.dataset.filter===selected);b.setAttribute('aria-pressed',String(b.dataset.filter===selected))});cards.forEach(card=>{const matches=(selected==='all'||(selected==='featured'?card.dataset.featured==='true':card.dataset.category===selected))&&card.textContent.toLowerCase().includes(query);card.hidden=!matches;if(matches){if(!reduced.matches&&document.body.dataset.motion!=='off'&&card.animate)card.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});n++}});document.getElementById('project-count').textContent=`Showing ${n} of ${cards.length} projects${selected==='featured'?' · Featured selection':''}`;empty.hidden=n>0;}
 filters.forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.filter;filter()}));search.addEventListener('input',()=>{if(search.value.trim())selected='all';filter()});filter();}
 // Full-screen image viewer. Uses native dialog focus trapping and Escape handling.
 const box=document.createElement('dialog');box.className='lightbox';box.setAttribute('aria-labelledby','preview-title');box.innerHTML='<div class="lightbox-toolbar"><h2 id="preview-title">Project preview</h2><div class="lightbox-controls"><button type="button" data-action="prev" aria-label="Previous image">←</button><span class="preview-position" aria-live="polite"></span><button type="button" data-action="next" aria-label="Next image">→</button><button type="button" data-action="zoom" aria-pressed="false">Zoom</button><a class="preview-original" target="_blank" rel="noopener noreferrer">Original ↗</a><button type="button" data-action="close" aria-label="Close image preview">✕</button></div></div><div class="lightbox-stage"><img alt=""></div><p class="lightbox-caption"></p>';document.body.append(box);
@@ -26,4 +26,44 @@ cards.forEach(card=>{const cover=card.querySelector('.sql-cover-card'),img=cover
 // Delegation also covers images inserted into the existing project-detail dialog.
 document.addEventListener('click',e=>{const img=e.target.closest('img')||e.target.closest('a,button')?.querySelector('img');if(!img||box.contains(img)||img.closest('.project,.hero-art'))return;const anchor=img.closest('a');if(anchor&&!/\.(png|jpe?g|webp)(\?.*)?$/i.test(anchor.getAttribute('href')||''))return;if(!img.closest('figure,.case-cover,#dialog-body'))return;e.preventDefault();const scope=img.closest('#dialog-body')||document.querySelector('.case-body')||document;const list=[...scope.querySelectorAll('figure img,.case-cover img')];const at=list.indexOf(img);open((at>=0?list:[img]).map(i=>({src:i.src,alt:i.alt})),Math.max(0,at),anchor||img.closest('button')||img)});
 document.querySelectorAll('.case-body figure img,.case-cover img').forEach(img=>{if(!img.closest('a')){const button=document.createElement('button');button.type='button';button.style.cssText='display:block;border:0;padding:0;background:transparent;width:100%;cursor:zoom-in';button.setAttribute('aria-label','Enlarge '+(img.alt||'project image'));img.before(button);button.append(img);}});
+})();
+
+/* A visitor-controlled project showcase; original hero works without JavaScript. */
+(() => {
+ const hero=document.querySelector('.hero'), art=hero?.querySelector('.hero-art');
+ if(!hero||!art)return;
+ const root=document.documentElement, preference=matchMedia('(prefers-reduced-motion: reduce)');
+ const motion=document.createElement('button');
+ motion.type='button';motion.className='motion-toggle';
+ let paused=preference.matches;
+ try{paused=paused||localStorage.getItem('portfolio-motion')==='off'}catch{}
+ function syncMotion(){
+  document.body.dataset.motion=paused?'off':'on';
+  motion.textContent=paused?'Motion paused · Enable animation':'Ambient motion on · Pause animation';
+  motion.setAttribute('aria-pressed',String(!paused));
+  if(paused)document.getAnimations().forEach(a=>a.cancel());
+ }
+ motion.onclick=()=>{paused=!paused;syncMotion();try{localStorage.setItem('portfolio-motion',paused?'off':'on')}catch{}};
+ preference.addEventListener('change',e=>{if(e.matches){paused=true;syncMotion()}});
+ hero.firstElementChild.append(motion);syncMotion();
+ const link=art.querySelector('.hero-preview'),img=link.querySelector('img');
+ const stamp=document.createElement('div');stamp.className='studio-caption';
+ stamp.innerHTML='<span>Inside the analytics studio</span><span>Selected portfolio / 01</span>';art.prepend(stamp);
+ const controls=document.createElement('div');controls.className='showcase-controls';controls.setAttribute('role','group');controls.setAttribute('aria-label','Choose a project preview');
+ const note=document.createElement('p');note.className='showcase-note';note.setAttribute('aria-live','polite');
+ const items=[
+  {label:'01 / Sales',title:'Sales & Customer Dashboards',tag:'Tableau portfolio',src:img.getAttribute('src'),alt:img.alt,url:link.getAttribute('href'),note:'Explore sales performance, customer patterns and year-over-year trends.'},
+  {label:'02 / People',title:'Human Resources Dashboard',tag:'Tableau portfolio',src:'/assets/hr-summary.png',alt:'HR dashboard summary of synthetic workforce, demographics and income data',url:'/projects/hr-dashboard/',note:'8,950 synthetic employee records. Workforce overview and employee detail.'},
+  {label:'03 / SQL',title:'Advanced SQL Analytics',tag:'SQL Server portfolio',src:'/assets/advanced-sql-analytics-card-v2.webp',alt:'Advanced SQL Analytics project presentation cover',url:'/projects/advanced-sql-analytics/',note:'Inspect customer cohorts, product mix and reporting logic in the case study.'}
+ ];
+ function select(i){
+  const p=items[i];link.href=p.url;img.src=p.src;img.alt=p.alt;
+  link.querySelector('.tag').textContent=p.tag;link.querySelector('.preview-bottom span').textContent=p.title;
+  stamp.lastElementChild.textContent='Selected portfolio / '+String(i+1).padStart(2,'0');
+  controls.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
+  note.textContent=p.note;
+  if(!paused&&!preference.matches&&link.animate)link.animate([{opacity:.55,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'ease-out'});
+ }
+ items.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.textContent=p.label;b.setAttribute('aria-pressed',String(i===0));b.onclick=()=>select(i);controls.append(b)});
+ art.append(controls,note);note.textContent=items[0].note;
 })();
