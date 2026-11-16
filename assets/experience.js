@@ -32,6 +32,7 @@ document.querySelectorAll('.case-body figure img,.case-cover img').forEach(img=>
 (() => {
  const hero=document.querySelector('.hero'), art=hero?.querySelector('.hero-art');
  if(!hero||!art)return;
+ art.setAttribute('aria-label','Selected analytics project preview');
  const root=document.documentElement, preference=matchMedia('(prefers-reduced-motion: reduce)');
  const motion=document.createElement('button');
  motion.type='button';motion.className='motion-toggle';
