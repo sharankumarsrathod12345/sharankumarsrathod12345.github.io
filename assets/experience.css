@@ -61,3 +61,5 @@ body[data-motion=off] .reveal-ready{opacity:1;transform:none}
 @media(max-width:760px){.hero{min-height:0;gap:26px}.hero:before,.hero:after{inset:10px -12px 20px}.hero-art{padding:10px 4px 0}.hero-preview{padding:15px}.hero-preview img{height:auto;aspect-ratio:16/10}.studio-caption{font-size:9px;letter-spacing:1px}.showcase-controls{margin-top:20px}.project{padding:12px}.service{padding:24px}.stack{padding:18px 10px}.stack span{text-align:left}.hero h1{font-size:clamp(42px,10vw,64px)}}
 @media(prefers-reduced-motion:reduce){.hero:after{animation:none}.project .sql-cover-card:hover img{transform:none}}
 @media print{.hero:after,.hero:before,.motion-toggle,.showcase-controls,.studio-caption{display:none}.hero h1 em{background:none;color:inherit}}
+
+.motion-toggle{display:block;width:fit-content;margin-top:18px}
